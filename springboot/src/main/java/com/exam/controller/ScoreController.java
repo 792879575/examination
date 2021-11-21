@@ -22,7 +22,8 @@ public class ScoreController {
         List<Score> res = scoreService.findAll();
         return ApiResultHandler.buildApiResult(200,"查询所有学生成绩",res);
     }
-//    分页
+
+
     @GetMapping("/score/{page}/{size}/{studentId}")
     public ApiResult findById(@PathVariable("page") Integer page, @PathVariable("size") Integer size, @PathVariable("studentId") Integer studentId) {
         Page<Score> scorePage = new Page<>(page, size);
