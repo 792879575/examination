@@ -5,7 +5,7 @@ import com.exam.serviceimpl.FillQuestionServiceImpl;
 import com.exam.serviceimpl.JudgeQuestionServiceImpl;
 import com.exam.serviceimpl.MultiQuestionServiceImpl;
 import com.exam.serviceimpl.PaperServiceImpl;
-import com.exam.util.ApiResultHandler;
+import com.exam.entity.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +28,8 @@ public class PaperController {
     @Autowired
     private FillQuestionServiceImpl fillQuestionService;
     @GetMapping("/papers")
-    public ApiResult<PaperManage> findAll() {
-       ApiResult res =  ApiResultHandler.buildApiResult(200,"请求成功",paperService.findAll());
+    public Result findAll() {
+       com.exam.entity.Result res =  Result.buildApiResult(200,"请求成功",paperService.findAll());
        return  res;
     }
 
@@ -46,11 +46,11 @@ public class PaperController {
     }
 
     @PostMapping("/paperManage")
-    public ApiResult add(@RequestBody PaperManage paperManage) {
+    public Result add(@RequestBody PaperManage paperManage) {
         int res = paperService.add(paperManage);
         if (res != 0) {
-            return ApiResultHandler.buildApiResult(200,"添加成功",res);
+            return Result.buildApiResult(200,"添加成功",res);
         }
-        return ApiResultHandler.buildApiResult(400,"添加失败",res);
+        return Result.buildApiResult(400,"添加失败",res);
     }
 }

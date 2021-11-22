@@ -39,4 +39,8 @@ public class MultiQuestionServiceImpl implements MultiQuestionService {
     public List<Integer> findBySubject(String subject, Integer pageNo) {
         return multiQuestionMapper.findBySubject(subject,pageNo);
     }
+
+    public MultiQuestion findQuestionById(Integer questionId){
+        return multiQuestionMapper.findByQuestionId(questionId);
+    }
 }

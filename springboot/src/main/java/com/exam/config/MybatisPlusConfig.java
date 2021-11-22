@@ -1,4 +1,4 @@
-package com.exam;
+package com.exam.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;

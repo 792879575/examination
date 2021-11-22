@@ -43,6 +43,7 @@ public interface StudentMapper {
     int updatePwd(Student student);
 
 
+
     @Options(useGeneratedKeys = true,keyProperty = "studentId")
     @Insert("insert into student(studentName,grade,major,clazz,institute,tel,email,pwd,cardId,sex,role) values " +
             "(#{studentName},#{grade},#{major},#{clazz},#{institute},#{tel},#{email},#{pwd},#{cardId},#{sex},#{role})")

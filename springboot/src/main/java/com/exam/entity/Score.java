@@ -1,8 +1,10 @@
 package com.exam.entity;
 
+import com.exam.vo.AnswerVO;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class Score {
@@ -21,4 +23,6 @@ public class Score {
     private Integer scoreId;
 
     private String answerDate;
+
+    private List<AnswerVO> answerVOS;
 }

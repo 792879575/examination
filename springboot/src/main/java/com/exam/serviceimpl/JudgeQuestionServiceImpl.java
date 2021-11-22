@@ -40,4 +40,10 @@ public class JudgeQuestionServiceImpl implements JudgeQuestionService {
     public List<Integer> findBySubject(String subject, Integer pageNo) {
         return judgeQuestionMapper.findBySubject(subject,pageNo);
     }
+
+    @Override
+    public JudgeQuestion findQuestionById(Integer questionId) {
+
+        return judgeQuestionMapper.findByquestionId(questionId);
+    }
 }

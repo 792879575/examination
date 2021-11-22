@@ -1,46 +1,50 @@
 package com.exam.controller;
 
 import com.exam.entity.Admin;
-import com.exam.entity.ApiResult;
+import com.exam.entity.Result;
 import com.exam.serviceimpl.AdminServiceImpl;
-import com.exam.util.ApiResultHandler;
+import com.exam.entity.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Api("管理员模块")
+@RequestMapping(value = "admin")
 public class AdminController {
 
-    private AdminServiceImpl adminService;
     @Autowired
-    public AdminController(AdminServiceImpl adminService){
-        this.adminService = adminService;
+    private AdminServiceImpl adminService;
+
+    @ApiOperation("查询全部管理员")
+    @GetMapping("all")
+    public Result findAllAdmin(){
+        return Result.success(adminService.findAll());
     }
 
-    @GetMapping("/admins")
-    public ApiResult findAll(){
-        System.out.println("查询全部");
-        return ApiResultHandler.success(adminService.findAll());
+    @ApiOperation("根据ID查找管理员")
+    @GetMapping("{adminId}")
+    public Result findAdminById(@PathVariable("adminId") Integer adminId){
+        return Result.success(adminService.findById(adminId));
     }
 
-    @GetMapping("/admin/{adminId}")
-    public ApiResult findById(@PathVariable("adminId") Integer adminId){
-        System.out.println("根据ID查找");
-        return ApiResultHandler.success(adminService.findById(adminId));
-    }
-
-    @DeleteMapping("/admin/{adminId}")
-    public ApiResult deleteById(@PathVariable("adminId") Integer adminId){
+    @ApiOperation("删除管理员")
+    @DeleteMapping("/delete/{adminId}")
+    public Result deleteAdminById(@PathVariable("adminId") Integer adminId){
         adminService.deleteById(adminId);
-        return ApiResultHandler.success();
+        return Result.success();
     }
 
-    @PutMapping("/admin/{adminId}")
-    public ApiResult update(@PathVariable("adminId") Integer adminId, Admin admin){
-        return ApiResultHandler.success(adminService.update(admin));
+    @ApiOperation("更新管理员信息")
+    @PutMapping("/update/{adminId}")
+    public Result updateAdmin(@PathVariable("adminId") Integer adminId, Admin admin){
+        return Result.success(adminService.update(admin));
     }
 
-    @PostMapping("/admin")
-    public ApiResult add(Admin admin){
-        return ApiResultHandler.success(adminService.add(admin));
+    @ApiOperation("添加管理员信息")
+    @PostMapping("/add/admin")
+    public Result add(Admin admin){
+        return Result.success(adminService.add(admin));
     }
 }

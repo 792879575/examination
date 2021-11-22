@@ -33,4 +33,7 @@ public interface JudgeQuestionMapper {
 
     @Select("select questionId from judge_question  where subject=#{subject}  order by rand() desc limit #{pageNo}")
     List<Integer> findBySubject(String subject,Integer pageNo);
+
+    @Select("select * from judge_question where questionId = #{questionId}")
+    JudgeQuestion findByquestionId(Integer questionId);
 }
